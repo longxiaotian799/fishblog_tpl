@@ -1,0 +1,42 @@
+====================================
+FishBlog 项目状态
+====================================
+
+✅ Docker 中间件已启动并运行正常
+
+运行中的容器：
+- fishblog-mysql      (127.0.0.1:3307)
+- fishblog-redis      (127.0.0.1:6379)  
+- fishblog-rabbitmq   (127.0.0.1:5672, 管理台: 15672)
+- fishblog-es         (127.0.0.1:9200)
+
+====================================
+下一步操作
+====================================
+
+要启动完整的项目，你需要：
+
+1. 安装 Maven (构建后端项目必需)
+   - 下载: https://maven.apache.org/download.cgi
+   - 安装指南请查看: WINDOWS_SETUP.md
+
+2. 安装完 Maven 后，运行一键启动脚本:
+   start-all.bat
+
+====================================
+Docker 容器管理命令
+====================================
+
+查看容器状态:
+docker ps --filter "name=fishblog"
+
+停止所有容器:
+docker stop fishblog-mysql fishblog-redis fishblog-rabbitmq fishblog-es
+
+启动所有容器:
+docker start fishblog-mysql fishblog-redis fishblog-rabbitmq fishblog-es
+
+删除所有容器:
+docker rm -f fishblog-mysql fishblog-redis fishblog-rabbitmq fishblog-es
+
+====================================

@@ -1166,11 +1166,11 @@ export default {
         console.log('开始获取博客信息...');
         const response = await this.axios.get("/api/");
         console.log('获取到的响应：', response);
-        
+
         if (response.data.flag) {
           this.$store.commit("checkBlogInfo", response.data.data);
         } else {
-          this.$message.error(response.data.message || "获取博客信息失败");
+          this.$toast({ type: "error", message: response.data.message || "获取博客信息失败" });
         }
       } catch (error) {
         console.error("获取博客信息接口错误：", {
@@ -1179,11 +1179,11 @@ export default {
           request: error.request,
           config: error.config
         });
-        
-        const errorMessage = error.response?.data?.message 
-          || error.message 
+
+        const errorMessage = error.response?.data?.message
+          || error.message
           || '获取博客信息失败';
-        this.$message.error(errorMessage);
+        this.$toast({ type: "error", message: errorMessage });
       }
     },
     generateToc() {

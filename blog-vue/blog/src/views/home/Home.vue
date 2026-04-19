@@ -339,15 +339,15 @@ export default {
             notices: data.data.notices || []
           };
           this.$store.commit("checkBlogInfo", this.blogInfo);
-          
+
           // 调试输出
-          
+
         } else {
-          this.$message.error("获取博客信息失败");
+          this.$toast({ type: "error", message: "获取博客信息失败" });
         }
       }).catch(error => {
-        
-        this.$message.error("获取博客信息失败");
+        console.error("获取博客信息失败:", error);
+        this.$toast({ type: "error", message: "获取博客信息失败，请检查网络连接" });
       });
     },
     infiniteHandler($state) {
