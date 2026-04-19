@@ -180,7 +180,7 @@
                     alt="作者头像"
                   />
                   <div class="author-name">
-                    {{ $store.state.blogInfo.nickname || "Li Zhiyuan" }}
+                    {{ $store.state.blogInfo.nickname || "龙啸天799" }}
                   </div>
                   <div class="author-description">
                     {{ $store.state.blogInfo.intro || "程序，搞起来很轻松的，就是头冷" }}

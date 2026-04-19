@@ -278,20 +278,86 @@ FishBlog
 ### 环境版本
 
 - **JDK**: 1.8
-- **MySQL**: 8.0.20
+- **MySQL**: 8.0
 - **Redis**: 6.0.5
-- **Elasticsearch**: 7.9.2
-- **RabbitMQ**: 3.8.5
+- **Elasticsearch**: 7.17.24
+- **RabbitMQ**: 3.13
 
 ## 🚀 快速开始
 
-### 1️⃣ 数据库配置
+### 1️⃣ 一键启动中间件
 
 <details>
 <summary>展开查看详情</summary>
 
-1. 导入数据库文件: `blog-mysql8.sql`
-2. 博主用户信息ID默认为1，如需修改请到 /constant/UserConst 处修改BLOGGER_ID
+项目已补充本地开发脚本，默认使用 Docker 启动 MySQL、Redis、RabbitMQ、Elasticsearch。
+
+执行命令:
+
+```bash
+cd /root/fishblog_tpl
+./scripts/start-middleware.sh
+```
+
+脚本会处理以下事项:
+
+1. 创建 Docker 网络 `fishblog-net`
+2. 启动 MySQL 8.0、Redis 6.2、RabbitMQ 3.13、Elasticsearch 7.17.24
+3. 自动初始化数据库 `blog_temp`
+4. 自动导入根目录下的 `blog_mysql8.sql`
+
+注意:
+
+1. 如果宿主机 `3306` 已被占用，请把 MySQL 端口映射改成 `3307:3306`
+2. 当前仓库的 `application-local.yml` 已按 `127.0.0.1:3307` 连接 MySQL
+
+如果你已经手动拉好镜像，也可以直接复用下面这些单独命令:
+
+```bash
+docker network create fishblog-net
+
+docker run -d --name fishblog-mysql \
+  --network fishblog-net \
+  -p 3307:3306 \
+  -e MYSQL_ROOT_PASSWORD=123456 \
+  -e MYSQL_DATABASE=blog_temp \
+  -v /root/fishblog_tpl/docker/mysql/init/00-create-db.sql:/docker-entrypoint-initdb.d/00-create-db.sql:ro \
+  -v /root/fishblog_tpl/blog_mysql8.sql:/docker-entrypoint-initdb.d/01-blog_mysql8.sql:ro \
+  mysql:8.0 --default-authentication-plugin=mysql_native_password
+
+docker run -d --name fishblog-redis \
+  --network fishblog-net \
+  -p 6379:6379 \
+  redis:6.2
+
+docker run -d --name fishblog-rabbitmq \
+  --network fishblog-net \
+  -p 5672:5672 \
+  -p 15672:15672 \
+  rabbitmq:3.13-management
+
+docker run -d --name fishblog-es \
+  --network fishblog-net \
+  -p 9200:9200 \
+  -p 9300:9300 \
+  -e discovery.type=single-node \
+  -e xpack.security.enabled=false \
+  -e ES_JAVA_OPTS='-Xms512m -Xmx512m' \
+  elasticsearch:7.17.24
+```
+
+常用容器命令:
+
+```bash
+docker ps -a
+docker logs -f fishblog-mysql
+docker logs -f fishblog-redis
+docker logs -f fishblog-rabbitmq
+docker logs -f fishblog-es
+docker start fishblog-mysql fishblog-redis fishblog-rabbitmq fishblog-es
+docker stop fishblog-mysql fishblog-redis fishblog-rabbitmq fishblog-es
+docker rm -f fishblog-mysql fishblog-redis fishblog-rabbitmq fishblog-es
+```
 
 </details>
 
@@ -300,40 +366,43 @@ FishBlog
 <details>
 <summary>展开查看详情</summary>
 
-1. 进入`blog-springboot`目录
-2. 编辑`src/main/resources/application-dev.yml`文件，配置以下信息:
-   - 数据库连接信息
-   - Redis连接信息
-   - RabbitMQ连接信息
-   - 邮箱配置
-   - 第三方登录配置(QQ、微博、GitHub、微信、短信等)
-   - 阿里云OSS配置
-   - Elasticsearch配置(需要自己先创建索引)
+本地开发已新增 `application-local.yml`，可直接使用 Docker 中间件默认配置。
 
-示例:
-```yaml
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/blog?serverTimezone=GMT%2B8&allowMultiQueries=true
-    username: your_username
-    password: your_password
-    
-  redis:
-    host: localhost
-    port: 6379
-    password: your_redis_password
-    
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-```
+推荐使用 JDK 8:
 
-3. 运行Spring Boot应用:
 ```bash
-mvn spring-boot:run
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.412.b08-5.oe1.aarch64
+export PATH=$JAVA_HOME/bin:$PATH
 ```
+
+项目已内置 Maven 阿里云镜像配置，位置:
+
+- `blog-springboot/.mvn/settings-aliyun.xml`
+- `blog-springboot/.mvn/maven.config`
+
+打包命令:
+
+```bash
+cd /root/fishblog_tpl/blog-springboot
+mvn -Dmaven.repo.local=/tmp/.m2/repository -DskipTests package
+```
+
+启动命令:
+
+```bash
+cd /root/fishblog_tpl/blog-springboot
+java -jar target/blog-0.0.1.jar --spring.profiles.active=local
+```
+
+本地配置文件:
+
+- `blog-springboot/src/main/resources/application-local.yml`
+
+说明:
+
+1. MySQL 当前使用 `3307` 端口连接
+2. Elasticsearch 当前使用原生 `standard` 分词器，可直接跑通本地环境
+3. 邮件、QQ、微博、GitHub、OSS、短信等配置仍是占位值，如需相关功能请自行替换
 
 </details>
 
@@ -349,27 +418,6 @@ mvn spring-boot:run
 ```bash
 npm install
 ```
-3. 在`src/config/config.js`中配置各类API:
-   - 腾讯验证码应用ID
-   - 第三方登录API配置(QQ、微博、Github)
-   - 微信公众平台API
-   - 短信服务API
-4. 运行开发服务器:
-```bash
-npm run serve
-```
-5. 打包生产环境:
-```bash
-npm run build
-```
-
-#### 🌐 前台页面
-
-1. 进入`blog-vue/blog`目录
-2. 安装依赖:
-```bash
-npm install
-```
 3. 运行开发服务器:
 ```bash
 npm run serve
@@ -379,26 +427,29 @@ npm run serve
 npm run build
 ```
 
-#### 📡 第三方服务申请与配置
+默认访问地址:
 
-在全面使用本系统前，您需要申请并配置以下第三方服务:
+- `http://127.0.0.1:8082`
 
-1. **社交平台登录**
-   - QQ互联: 在[QQ互联平台](https://connect.qq.com/)申请应用并获取AppID和AppKey
-   - 微博开放平台: 在[微博开放平台](https://open.weibo.com/)创建应用
-   - GitHub OAuth: 在[GitHub开发者设置](https://github.com/settings/developers)创建OAuth应用
+#### 🌐 前台页面
 
-2. **消息通知服务**
-   - 邮箱服务: 配置SMTP服务器信息(推荐163邮箱或企业邮箱)
-   - 短信服务: 申请阿里云或腾讯云短信服务
-   - 微信公众平台: 申请公众号并获取相关API密钥
+1. 进入`blog-vue/blog`目录
+2. 安装依赖:
+```bash
+yarn install
+```
+3. 运行开发服务器:
+```bash
+yarn serve
+```
+4. 打包生产环境:
+```bash
+yarn build
+```
 
-3. **中间件配置**
-   - Redis: 配置正确的端口号(默认6379)和密码
-   - RabbitMQ: 设置连接信息、队列和交换机(默认端口5672)
-   - Elasticsearch: 配置集群地址和端口号(默认9200)
+默认访问地址:
 
-> ⚠️ **重要提示:** 各第三方服务的具体申请流程和配置方法请参考各平台的官方文档，申请过程可能随平台政策变化而调整。所有API密钥请妥善保管，避免泄露。
+- `http://127.0.0.1:8081`
 </details>
 
 ## 👤 默认账户
@@ -407,11 +458,81 @@ npm run build
 
 | 用户名 | 密码 |
 |:------:|:------:|
-| 15987777744@qq.com | 123456 |
+| 15967777744@qq.com | 123456 |
 
 </div>
 
 > ⚠️ **安全提示:** 请在部署后立即修改默认密码！
+
+## 🔐 本地默认凭据
+
+### 应用账户
+
+| 类型 | 账号 | 密码 |
+|:----:|:----:|:----:|
+| 博客后台登录 | 15967777744@qq.com | 123456 |
+
+### 中间件账户
+
+| 服务 | 地址 | 用户名 | 密码 | 备注 |
+|:----:|:----:|:------:|:----:|:----:|
+| MySQL | `127.0.0.1:3307` | `root` | `123456` | 数据库名 `blog_temp` |
+| Redis | `127.0.0.1:6379` | - | - | 无密码 |
+| RabbitMQ | `127.0.0.1:5672` | `guest` | `guest` | 管理台 `http://127.0.0.1:15672` |
+| Elasticsearch | `http://127.0.0.1:9200` | - | - | 无鉴权 |
+
+## 🌐 本地访问地址
+
+| 服务 | 地址 |
+|:----:|:----:|
+| 博客前台 | `http://127.0.0.1:8081` |
+| 管理后台 | `http://127.0.0.1:8082` |
+| Spring Boot 后端 | `http://127.0.0.1:8080` |
+| RabbitMQ 管理台 | `http://127.0.0.1:15672` |
+
+## 🧰 常用启动命令
+
+```bash
+# 1. 启动中间件
+cd /root/fishblog_tpl
+./scripts/start-middleware.sh
+
+# 2. 启动后端
+cd /root/fishblog_tpl/blog-springboot
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.412.b08-5.oe1.aarch64
+export PATH=$JAVA_HOME/bin:$PATH
+mvn -Dmaven.repo.local=/tmp/.m2/repository -DskipTests package
+java -jar target/blog-0.0.1.jar --spring.profiles.active=local
+
+# 3. 启动前台
+cd /root/fishblog_tpl/blog-vue/blog
+yarn install
+yarn serve
+
+# 4. 启动后台
+cd /root/fishblog_tpl/blog-vue/admin
+npm install
+npm run serve
+```
+
+## 🩺 常用排障命令
+
+```bash
+# 查看 8080 是否被占用
+ss -ltnp | grep 8080
+
+# 查看后端进程
+ps -ef | grep 'blog-0.0.1.jar' | grep -v grep
+
+# 测试服务是否存活
+curl -I http://127.0.0.1:8080
+curl -I http://127.0.0.1:8081
+curl -I http://127.0.0.1:8082
+
+# 查看 ES 索引和映射
+docker exec fishblog-es curl -s http://localhost:9200/_cat/indices?v
+docker exec fishblog-es curl -s http://localhost:9200/article/_mapping?pretty
+```
 
 ## ⚠️ 注意事项
 

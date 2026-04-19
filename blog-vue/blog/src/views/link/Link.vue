@@ -33,7 +33,7 @@
         <v-icon color="blue">mdi-dots-horizontal-circle</v-icon> 添加友链
       </div>
       <blockquote>
-        <div>名称：Auroral的个人博客</div>
+        <div>名称：龙啸天799的个人博客</div>
         <div>简介：且将新火试新茶，诗酒趁年华</div>
         <div>
           头像：hhttps://big-event20040810.oss-cn-beijing.aliyuncs.com/avatar/1904580896942034945.jpg

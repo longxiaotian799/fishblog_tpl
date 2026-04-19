@@ -1,0 +1,124 @@
+# 本地开发配置，配合 Docker 启动的中间件使用
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 21600
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/blog_temp?serverTimezone=GMT%2B8&allowMultiQueries=true
+    username: root
+    password: 123456
+    hikari:
+      minimum-idle: 5
+      idle-timeout: 180000
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: MyHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  redis:
+    host: localhost
+    port: 6379
+    password:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+  mail:
+    host: smtp.example.com
+    username: your_email@example.com
+    password: your_email_password
+    default-encoding: UTF-8
+    port: 465
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+          starttls:
+            enable: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+            port: 465
+        transport:
+          protocol: smtps
+  servlet:
+    multipart:
+      max-file-size: 40MB
+      max-request-size: 100MB
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+elasticsearch:
+  host: localhost
+  port: 9200
+  username:
+  password:
+  connection-timeout: 10s
+  read-timeout: 10s
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+qq:
+  app-id: "your_app_id"
+  app-secret: "your_app_secret"
+  redirect-uri: "http://localhost:8080/oauth/login/qq"
+  token-url: "https://graph.qq.com/oauth2.0/token"
+  openid-url: "https://graph.qq.com/oauth2.0/me"
+  user-info-url: "https://graph.qq.com/user/get_user_info"
+
+weibo:
+  app-id: "your_app_id"
+  app-secret: "your_app_secret"
+  grant-type: "authorization_code"
+  redirect-url: "http://localhost:8080/oauth/login/weibo"
+  access-token-url: "https://api.weibo.com/oauth2/access_token"
+  user-info-url: "https://api.weibo.com/2/users/show.json?uid={uid}&access_token={access_token}"
+
+aliyun:
+  url: "your-bucket.oss-cn-region.aliyuncs.com"
+  endpoint: "https://oss.aliyuncs.com"
+  accessKeyId: "your_access_key_id"
+  accessKeySecret: "your_access_key_secret"
+  bucketName: "your_bucket_name"
+
+github:
+  app-id: "your_app_id"
+  app-secret: "your_app_secret"
+  redirect-url: "http://localhost:8080/oauth/login/github"
+  access-token-url: "https://github.com/login/oauth/access_token"
+  user-info-url: "https://api.github.com/user"
+
+tencent:
+  sms:
+    secret-id: "your_secret_id"
+    secret-key: "your_secret_key"
+    sdk-app-id: "your_sdk_app_id"
+    sign-name: "your_sign_name"
+    template-id: "your_template_id"
+
+swagger:
+  enable: true
+  host: localhost:8080
+  username: admin
+  password: admin
+
+knife4j:
+  enable: true
+  basic:
+    enable: true
+    username: admin
+    password: admin

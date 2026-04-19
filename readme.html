@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div data-align="center">
+<p><img src="Resources/github-header-image.png" alt="FishBlog - 全栈博客系统" width="1000"></p>
+</div>
+<div data-align="center">
+<p><a href="https://github.com/your-username/fishblog"><img
+src="https://readme-typing-svg.demolab.com?font=Fira+Code&amp;weight=1000&amp;size=26&amp;duration=3000&amp;pause=1000&amp;color=49B1F5&amp;center=true&amp;vCenter=true&amp;width=600&amp;lines=优雅而功能强大的全栈博客系统;Elegant+%26+Powerful+Full-Stack+Blog+System;✨一款优雅的SpringBoot+Vue全栈博客模板，简洁美观，功能齐全✨;Clean+Interface%2C+Rich+Features;记录灵感，分享知识的理想选择;Perfect+Choice+for+Sharing+Your+Knowledge;让博客创作成为一种享受;Make+Blogging+a+Pleasure;"
+alt="Typing SVG" /></a></p>
+<p align="center">
+<a href="LICENSE">
+<img src="https://img.shields.io/badge/License-Apache%202.0-orange.svg?style=flat-square&logo=apache" alt="License">
+</a> <a href="https://vuejs.org/">
+<img src="https://img.shields.io/badge/Vue.js-2.x-4FC08D?style=flat-square&logo=vue.js" alt="Vue">
+</a> <a href="https://spring.io/projects/spring-boot">
+<img src="https://img.shields.io/badge/Spring%20Boot-2.x-6DB33F?style=flat-square&logo=spring-boot" alt="Spring Boot">
+</a> <a href="https://redis.io/">
+<img src="https://img.shields.io/badge/Redis-6.x-DC382D?style=flat-square&logo=redis" alt="Redis">
+</a>
+</p>
+<p align="center">
+<a href="https://www.elastic.co/">
+<img src="https://img.shields.io/badge/Elasticsearch-7.x-005571?style=flat-square&logo=elasticsearch" alt="Elasticsearch">
+</a> <a href="https://www.rabbitmq.com/">
+<img src="https://img.shields.io/badge/RabbitMQ-3.x-FF6600?style=flat-square&logo=rabbitmq" alt="RabbitMQ">
+</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API">
+<img src="https://img.shields.io/badge/WebSocket-✓-brightgreen?style=flat-square&logo=socket.io" alt="WebSocket">
+</a>
+</p>
+<p align="center">
+<a href="https://github.com/your-username/fishblog/pulls">
+<img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square&logo=github" alt="PRs Welcome">
+</a> <a href="https://github.com/your-username/fishblog/stargazers">
+<img src="https://img.shields.io/badge/Stars-⭐⭐⭐⭐⭐-yellow?style=flat-square&logo=github" alt="Stars">
+</a>
+<a href="https://github.com/your-username/fishblog/network/members">
+<img src="https://img.shields.io/badge/Forks-🍴-blue?style=flat-square&logo=git-fork" alt="Forks">
+</a>
+</p>
+</div>
+<h2 id="项目简介">✨ 项目简介</h2>
+<p><strong><a
+href="https://fishblog.yyf040810.cn">FishBlog（点击跳转到博客演示地址）</a></strong>
+是一款基于 Spring Boot + Vue.js
+的前后端分离博客系统模板，设计优雅、功能齐全。采用 ByteMD
+编辑器提供流畅的写作体验，支持 RSS
+订阅、邮件提醒、实时聊天室、多种社交平台登录、友情链接管理、看板娘、音乐播放器、自定义鼠标样式等丰富功能。您可以在此基础上进行任意
+DIY 定制，快速打造专属于您的个性化博客空间，展示您的创意和知识。</p>
+<blockquote>
+<p>💡 完全开源、简单易用、美观大方，随机diy， 让您的博客与众不同！</p>
+</blockquote>
+<h2 id="效果展示">📸 效果展示</h2>
+<div data-align="center">
+<table>
+<tr>
+<td>
+<img src="Resources/网站首页.jpeg" alt="网站首页" width="450">
+<p align="center">
+首页 - 精美布局展示最新文章和热门内容
+</p>
+</td>
+<td>
+<img src="Resources/文章列表.png" alt="文章列表" width="450">
+<p align="center">
+文章列表 - 分页展示所有博客文章
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="Resources/文章详情.png" alt="文章详情" width="450">
+<p align="center">
+文章详情 - 支持Markdown渲染和代码高亮
+</p>
+</td>
+<td>
+<img src="Resources/归档页面.png" alt="归档页面" width="450">
+<p align="center">
+归档页面 - 按时间线展示所有文章
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="Resources/标签界面.png" alt="标签界面" width="450">
+<p align="center">
+标签界面 - 可视化展示文章标签分布
+</p>
+</td>
+<td>
+<img src="Resources/分类界面.png" alt="分类界面" width="450">
+<p align="center">
+分类界面 - 清晰整理不同类别的文章
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="Resources/留言板界面.png" alt="留言板界面" width="450">
+<p align="center">
+留言板 - 支持Emoji表情和弹幕效果
+</p>
+</td>
+<td>
+<img src="Resources/友链界面.png" alt="友链界面" width="450">
+<p align="center">
+友链界面 - 展示和管理友情链接
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="Resources/收藏界面.png" alt="收藏界面" width="450">
+<p align="center">
+收藏界面 - 展示自己推荐的好用的网站
+</p>
+</td>
+<td>
+<img src="Resources/登录界面.png" alt="登录界面" width="450">
+<p align="center">
+登录界面 - 使用多种登录方式进行登录
+</p>
+</td>
+</tr>
+</table>
+</div>
+<h2 id="技术栈">🔨 技术栈</h2>
+<div data-align="center">
+<table>
+<tr>
+<td>
+<strong>🖥️ 后端</strong>
+</td>
+<td>
+<strong>🎨 前端</strong>
+</td>
+<td>
+<strong>🔧 其他</strong>
+</td>
+</tr>
+<tr>
+<td>
+<ul>
+<li>
+Spring Boot
+</li>
+<li>
+Spring Security
+</li>
+<li>
+Spring Data JPA
+</li>
+<li>
+MyBatis Plus
+</li>
+<li>
+MySQL
+</li>
+<li>
+Redis
+</li>
+<li>
+RabbitMQ
+</li>
+<li>
+Elasticsearch
+</li>
+<li>
+Swagger2
+</li>
+<li>
+Nginx
+</li>
+<li>
+Docker
+</li>
+<li>
+MaxWell
+</li>
+<li>
+WebSocket
+</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>
+Vue.js
+</li>
+<li>
+Element UI
+</li>
+<li>
+Bytemd
+</li>
+<li>
+Vuetify
+</li>
+<li>
+Axios
+</li>
+<li>
+Vuex
+</li>
+<li>
+Vue Router
+</li>
+<li>
+ECharts
+</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>
+QQ第三方登录
+</li>
+<li>
+微博第三方登录
+</li>
+<li>
+GitHub第三方登录
+</li>
+<li>
+腾讯云人机验证
+</li>
+<li>
+微信人机验证
+</li>
+<li>
+WebSocket即时通讯
+</li>
+<li>
+阿里云OSS对象存储
+</li>
+<li>
+Ribbon.js动态背景
+</li>
+<li>
+Live2D看板娘
+</li>
+<li>
+APlayer音乐播放器
+</li>
+</ul>
+</td>
+</tr>
+</table>
+</div>
+<h2 id="功能特性">🎯 功能特性</h2>
+<div data-align="center">
+<table>
+<tr>
+<td>
+🎨 美观的响应式界面设计
+</td>
+<td>
+📝 ByteMD文章编辑器
+</td>
+<td>
+🔍 Elasticsearch全站搜索
+</td>
+</tr>
+<tr>
+<td>
+🖼️ 文章封面图上传
+</td>
+<td>
+🏷️ 标签、分类管理
+</td>
+<td>
+📊 ECharts数据可视化
+</td>
+</tr>
+<tr>
+<td>
+🔐 RBAC角色权限管理
+</td>
+<td>
+💬 评论邮件提醒功能
+</td>
+<td>
+🔑 多种第三方登录方式
+</td>
+</tr>
+<tr>
+<td>
+📱 移动端适配设计
+</td>
+<td>
+📡 RSS订阅功能
+</td>
+<td>
+💥 点击特效与鼠标样式
+</td>
+</tr>
+<tr>
+<td>
+🎵 音乐播放器集成
+</td>
+<td>
+💕 Live2D看板娘
+</td>
+<td>
+💬 实时聊天室功能
+</td>
+</tr>
+<tr>
+<td>
+🔗 友情链接管理
+</td>
+<td>
+🌙 深色模式支持
+</td>
+<td>
+📜 平滑目录跳转功能
+</td>
+</tr>
+</table>
+</div>
+<h2 id="项目结构">🏗️ 项目结构</h2>
+<pre><code>FishBlog
+├── blog-springboot    // 🖥️ 博客后端 (Spring Boot)
+├── blog-vue           // 🎨 博客前端
+│   ├── admin          // ⚙️ 后台管理系统 (Vue.js + Element UI)
+│   └── blog           // 🌐 前台展示页面 (Vue.js)
+└── blog-mysql8.sql    // 📦 数据库文件</code></pre>
+<h2 id="开发环境">🛠️ 开发环境</h2>
+<h3 id="开发工具">开发工具</h3>
+<div data-align="center">
+<table>
+<tr>
+<th>
+开发工具
+</th>
+<th>
+说明
+</th>
+</tr>
+<tr>
+<td>
+IDEA
+</td>
+<td>
+Java开发工具IDE
+</td>
+</tr>
+<tr>
+<td>
+VSCode
+</td>
+<td>
+Vue开发工具IDE
+</td>
+</tr>
+<tr>
+<td>
+Navicat
+</td>
+<td>
+MySQL远程连接工具
+</td>
+</tr>
+<tr>
+<td>
+Another Redis Desktop Manager
+</td>
+<td>
+Redis远程连接工具
+</td>
+</tr>
+<tr>
+<td>
+Termius
+</td>
+<td>
+Linux远程连接工具
+</td>
+</tr>
+<tr>
+<td>
+filezilla
+</td>
+<td>
+Linux文件上传工具
+</td>
+</tr>
+<tr>
+<td>
+Postman
+</td>
+<td>
+API接口测试工具
+</td>
+</tr>
+<tr>
+<td>
+Jmeter
+</td>
+<td>
+性能测试工具
+</td>
+</tr>
+<tr>
+<td>
+Typora
+</td>
+<td>
+Markdown编辑器
+</td>
+</tr>
+<tr>
+<td>
+Docker
+</td>
+<td>
+容器化部署工具
+</td>
+</tr>
+</table>
+</div>
+<h3 id="环境版本">环境版本</h3>
+<ul>
+<li><strong>JDK</strong>: 1.8</li>
+<li><strong>MySQL</strong>: 8.0</li>
+<li><strong>Redis</strong>: 6.0.5</li>
+<li><strong>Elasticsearch</strong>: 7.17.24</li>
+<li><strong>RabbitMQ</strong>: 3.13</li>
+</ul>
+<h2 id="快速开始">🚀 快速开始</h2>
+<h3 id="一键启动中间件">1️⃣ 一键启动中间件</h3>
+<details>
+<summary>
+展开查看详情
+</summary>
+<p>项目已补充本地开发脚本，默认使用 Docker 启动
+MySQL、Redis、RabbitMQ、Elasticsearch。</p>
+<p>执行命令:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /root/fishblog_tpl</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/start-middleware.sh</span></span></code></pre></div>
+<p>脚本会处理以下事项:</p>
+<ol type="1">
+<li>创建 Docker 网络 <code>fishblog-net</code></li>
+<li>启动 MySQL 8.0、Redis 6.2、RabbitMQ 3.13、Elasticsearch 7.17.24</li>
+<li>自动初始化数据库 <code>blog_temp</code></li>
+<li>自动导入根目录下的 <code>blog_mysql8.sql</code></li>
+</ol>
+<p>注意:</p>
+<ol type="1">
+<li>如果宿主机 <code>3306</code> 已被占用，请把 MySQL 端口映射改成
+<code>3307:3306</code></li>
+<li>当前仓库的 <code>application-local.yml</code> 已按
+<code>127.0.0.1:3307</code> 连接 MySQL</li>
+</ol>
+<p>如果你已经手动拉好镜像，也可以直接复用下面这些单独命令:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> network create fishblog-net</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">--name</span> fishblog-mysql <span class="dt">\</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--network</span> fishblog-net <span class="dt">\</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-p</span> 3307:3306 <span class="dt">\</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">-e</span> MYSQL_ROOT_PASSWORD=123456 <span class="dt">\</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">-e</span> MYSQL_DATABASE=blog_temp <span class="dt">\</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">-v</span> /root/fishblog_tpl/docker/mysql/init/00-create-db.sql:/docker-entrypoint-initdb.d/00-create-db.sql:ro <span class="dt">\</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">-v</span> /root/fishblog_tpl/blog_mysql8.sql:/docker-entrypoint-initdb.d/01-blog_mysql8.sql:ro <span class="dt">\</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  mysql:8.0 <span class="at">--default-authentication-plugin</span><span class="op">=</span>mysql_native_password</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">--name</span> fishblog-redis <span class="dt">\</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">--network</span> fishblog-net <span class="dt">\</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">-p</span> 6379:6379 <span class="dt">\</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  redis:6.2</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">--name</span> fishblog-rabbitmq <span class="dt">\</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">--network</span> fishblog-net <span class="dt">\</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">-p</span> 5672:5672 <span class="dt">\</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">-p</span> 15672:15672 <span class="dt">\</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  rabbitmq:3.13-management</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">--name</span> fishblog-es <span class="dt">\</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">--network</span> fishblog-net <span class="dt">\</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">-p</span> 9200:9200 <span class="dt">\</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">-p</span> 9300:9300 <span class="dt">\</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">-e</span> discovery.type=single-node <span class="dt">\</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">-e</span> xpack.security.enabled=false <span class="dt">\</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">-e</span> ES_JAVA_OPTS=<span class="st">&#39;-Xms512m -Xmx512m&#39;</span> <span class="dt">\</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  elasticsearch:7.17.24</span></code></pre></div>
+<p>常用容器命令:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps <span class="at">-a</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> logs <span class="at">-f</span> fishblog-mysql</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> logs <span class="at">-f</span> fishblog-redis</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> logs <span class="at">-f</span> fishblog-rabbitmq</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> logs <span class="at">-f</span> fishblog-es</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> start fishblog-mysql fishblog-redis fishblog-rabbitmq fishblog-es</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> stop fishblog-mysql fishblog-redis fishblog-rabbitmq fishblog-es</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> rm <span class="at">-f</span> fishblog-mysql fishblog-redis fishblog-rabbitmq fishblog-es</span></code></pre></div>
+</details>
+<h3 id="后端配置">2️⃣ 后端配置</h3>
+<details>
+<summary>
+展开查看详情
+</summary>
+<p>本地开发已新增 <code>application-local.yml</code>，可直接使用 Docker
+中间件默认配置。</p>
+<p>推荐使用 JDK 8:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME</span><span class="op">=</span>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.412.b08-5.oe1.aarch64</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$JAVA_HOME</span>/bin:<span class="va">$PATH</span></span></code></pre></div>
+<p>项目已内置 Maven 阿里云镜像配置，位置:</p>
+<ul>
+<li><code>blog-springboot/.mvn/settings-aliyun.xml</code></li>
+<li><code>blog-springboot/.mvn/maven.config</code></li>
+</ul>
+<p>打包命令:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /root/fishblog_tpl/blog-springboot</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> <span class="at">-Dmaven.repo.local</span><span class="op">=</span>/tmp/.m2/repository <span class="at">-DskipTests</span> package</span></code></pre></div>
+<p>启动命令:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /root/fishblog_tpl/blog-springboot</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-jar</span> target/blog-0.0.1.jar <span class="at">--spring.profiles.active</span><span class="op">=</span>local</span></code></pre></div>
+<p>本地配置文件:</p>
+<ul>
+<li><code>blog-springboot/src/main/resources/application-local.yml</code></li>
+</ul>
+<p>说明:</p>
+<ol type="1">
+<li>MySQL 当前使用 <code>3307</code> 端口连接</li>
+<li>Elasticsearch 当前使用原生 <code>standard</code>
+分词器，可直接跑通本地环境</li>
+<li>邮件、QQ、微博、GitHub、OSS、短信等配置仍是占位值，如需相关功能请自行替换</li>
+</ol>
+</details>
+<h3 id="前端配置">3️⃣ 前端配置</h3>
+<details>
+<summary>
+展开查看详情
+</summary>
+<h4 id="后台管理系统">🔧 后台管理系统</h4>
+<ol type="1">
+<li>进入<code>blog-vue/admin</code>目录</li>
+<li>安装依赖:</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install</span></code></pre></div>
+<ol start="3" type="1">
+<li>运行开发服务器:</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run serve</span></code></pre></div>
+<ol start="4" type="1">
+<li>打包生产环境:</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build</span></code></pre></div>
+<p>默认访问地址:</p>
+<ul>
+<li><code>http://127.0.0.1:8082</code></li>
+</ul>
+<h4 id="前台页面">🌐 前台页面</h4>
+<ol type="1">
+<li>进入<code>blog-vue/blog</code>目录</li>
+<li>安装依赖:</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">yarn</span> install</span></code></pre></div>
+<ol start="3" type="1">
+<li>运行开发服务器:</li>
+</ol>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">yarn</span> serve</span></code></pre></div>
+<ol start="4" type="1">
+<li>打包生产环境:</li>
+</ol>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">yarn</span> build</span></code></pre></div>
+<p>默认访问地址:</p>
+<ul>
+<li><code>http://127.0.0.1:8081</code></li>
+</ul>
+</details>
+<h2 id="默认账户">👤 默认账户</h2>
+<div data-align="center">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">用户名</th>
+<th style="text-align: center;">密码</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">15987777744@qq.com</td>
+<td style="text-align: center;">123456</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>⚠️ <strong>安全提示:</strong> 请在部署后立即修改默认密码！</p>
+</blockquote>
+<h2 id="本地默认凭据">🔐 本地默认凭据</h2>
+<h3 id="应用账户">应用账户</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">类型</th>
+<th style="text-align: center;">账号</th>
+<th style="text-align: center;">密码</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">博客后台登录</td>
+<td style="text-align: center;">15987777744@qq.com</td>
+<td style="text-align: center;">123456</td>
+</tr>
+</tbody>
+</table>
+<h3 id="中间件账户">中间件账户</h3>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 25%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">服务</th>
+<th style="text-align: center;">地址</th>
+<th style="text-align: center;">用户名</th>
+<th style="text-align: center;">密码</th>
+<th style="text-align: center;">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">MySQL</td>
+<td style="text-align: center;"><code>127.0.0.1:3307</code></td>
+<td style="text-align: center;"><code>root</code></td>
+<td style="text-align: center;"><code>123456</code></td>
+<td style="text-align: center;">数据库名 <code>blog_temp</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Redis</td>
+<td style="text-align: center;"><code>127.0.0.1:6379</code></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">无密码</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RabbitMQ</td>
+<td style="text-align: center;"><code>127.0.0.1:5672</code></td>
+<td style="text-align: center;"><code>guest</code></td>
+<td style="text-align: center;"><code>guest</code></td>
+<td style="text-align: center;">管理台
+<code>http://127.0.0.1:15672</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Elasticsearch</td>
+<td style="text-align: center;"><code>http://127.0.0.1:9200</code></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">无鉴权</td>
+</tr>
+</tbody>
+</table>
+<h2 id="本地访问地址">🌐 本地访问地址</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">服务</th>
+<th style="text-align: center;">地址</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">博客前台</td>
+<td style="text-align: center;"><code>http://127.0.0.1:8081</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">管理后台</td>
+<td style="text-align: center;"><code>http://127.0.0.1:8082</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Spring Boot 后端</td>
+<td style="text-align: center;"><code>http://127.0.0.1:8080</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RabbitMQ 管理台</td>
+<td style="text-align: center;"><code>http://127.0.0.1:15672</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用启动命令">🧰 常用启动命令</h2>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 启动中间件</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /root/fishblog_tpl</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/start-middleware.sh</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 启动后端</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /root/fishblog_tpl/blog-springboot</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME</span><span class="op">=</span>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.412.b08-5.oe1.aarch64</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$JAVA_HOME</span>/bin:<span class="va">$PATH</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> <span class="at">-Dmaven.repo.local</span><span class="op">=</span>/tmp/.m2/repository <span class="at">-DskipTests</span> package</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-jar</span> target/blog-0.0.1.jar <span class="at">--spring.profiles.active</span><span class="op">=</span>local</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 启动前台</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /root/fishblog_tpl/blog-vue/blog</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="ex">yarn</span> install</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="ex">yarn</span> serve</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. 启动后台</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /root/fishblog_tpl/blog-vue/admin</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run serve</span></code></pre></div>
+<h2 id="常用排障命令">🩺 常用排障命令</h2>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看 8080 是否被占用</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ss</span> <span class="at">-ltnp</span> <span class="kw">|</span> <span class="fu">grep</span> 8080</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看后端进程</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ps</span> <span class="at">-ef</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="st">&#39;blog-0.0.1.jar&#39;</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-v</span> grep</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 测试服务是否存活</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-I</span> http://127.0.0.1:8080</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-I</span> http://127.0.0.1:8081</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-I</span> http://127.0.0.1:8082</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看 ES 索引和映射</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> exec fishblog-es curl <span class="at">-s</span> http://localhost:9200/_cat/indices<span class="pp">?</span>v</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> exec fishblog-es curl <span class="at">-s</span> http://localhost:9200/article/_mapping<span class="pp">?</span>pretty</span></code></pre></div>
+<h2 id="注意事项">⚠️ 注意事项</h2>
+<ul>
+<li>✅ 请确保您已修改所有默认密码和API密钥</li>
+<li>✅
+生产环境部署时请使用<code>application-prod.yml</code>配置文件</li>
+<li>✅ 建议启用HTTPS以保护您的数据</li>
+<li>✅ 定期备份您的数据库</li>
+</ul>
+<h2 id="自定义">🔧 自定义</h2>
+<p>您可以根据自己的需求对模板进行自定义，包括但不限于:</p>
+<ul>
+<li>🎨 修改页面主题和样式</li>
+<li>➕ 添加新的功能模块</li>
+<li>🔌 集成其他第三方服务</li>
+<li>⚡ 优化性能和安全性</li>
+</ul>
+<h2 id="贡献指南">🤝 贡献指南</h2>
+<h3 id="fork-diy">Fork &amp; DIY</h3>
+<p>欢迎 Fork 本项目来创建和定制您自己的个人博客！步骤如下：</p>
+<ol type="1">
+<li>点击右上角的 “Fork” 按钮</li>
+<li>克隆您 Fork 的仓库到本地</li>
+<li>按照 <a href="#-快速开始">快速开始</a> 部署您的博客</li>
+<li>根据您的需求进行个性化定制</li>
+<li>提交并推送您的更改到您的仓库</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>重要提醒：</strong>
+在部署和提交代码前，请确保删除所有个人敏感信息，包括但不限于：邮箱地址、密码、API密钥、个人照片等。</p>
+</blockquote>
+<h3 id="提交-pull-request">提交 Pull Request</h3>
+<p>我们非常欢迎您为 FishBlog
+做出贡献！如果您有任何改进或新功能，请按以下步骤提交 PR：</p>
+<ol type="1">
+<li>Fork 本仓库</li>
+<li>创建您的特性分支
+(<code>git checkout -b feature/amazing-feature</code>)</li>
+<li>提交您的更改
+(<code>git commit -m '添加了一些很棒的特性'</code>)</li>
+<li>推送到分支
+(<code>git push origin feature/amazing-feature</code>)</li>
+<li>打开一个 Pull Request</li>
+</ol>
+<h4 id="pr-规范">PR 规范</h4>
+<p>为了让维护者更好地理解您的贡献，请在 PR
+标题和描述中包含以下信息：</p>
+<ul>
+<li>使用前缀：<code>[修复]</code>、<code>[功能]</code>、<code>[优化]</code>、<code>[文档]</code>
+等</li>
+<li>简洁明了地描述您所做的更改</li>
+<li>提供更改的原因或背景（如适用）</li>
+</ul>
+<p><strong>示例</strong>： -
+<code>[修复] 修复移动端评论列表显示不正确的问题</code> -
+<code>[功能] 添加暗黑模式主题切换功能</code> -
+<code>[优化] 提升文章加载性能</code></p>
+<h2 id="todo-列表">📝 Todo 列表</h2>
+<p>以下是我们计划添加的功能：</p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Markdown 编辑器主题切换</label></li>
+<li><label><input type="checkbox" />更多 UI 风格和主题美化</label></li>
+<li><label><input
+type="checkbox" />用户数据绑定（多平台账号关联）</label></li>
+<li><label><input type="checkbox" />评论回复邮件通知功能</label></li>
+<li><label><input type="checkbox" />更多的第三方登录集成</label></li>
+<li><label><input type="checkbox" />国际化支持</label></li>
+</ul>
+<p>欢迎贡献代码实现上述功能！</p>
+<h2 id="致谢">🙏 致谢</h2>
+<p>特别感谢 <a
+href="https://github.com/coder-fang/thatblog">coder-fang/thatblog</a>
+项目提供的优秀博客模板参考。该项目为本项目的开发提供了宝贵的灵感和技术参考。</p>
+<h2 id="许可证">📜 许可证</h2>
+<p>本项目使用Apache-2.0许可证 - 详见<a
+href="LICENSE">LICENSE</a>文件</p>
+<hr />
+<div data-align="center">
+<p><sub>Built with ❤️ by Yunfeng Yu</sub></p>
+</div>
+</body>
+</html>

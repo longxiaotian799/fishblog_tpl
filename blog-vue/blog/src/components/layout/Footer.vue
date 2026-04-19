@@ -31,7 +31,7 @@
         
         <!-- 版权信息行 -->
         <div class="footer-copyright-row">
-          <div class="copyright">©2025 - {{ new Date().getFullYear() }} By ❤️ Auroral</div>
+          <div class="copyright">©2025 - {{ new Date().getFullYear() }} By ❤️ 龙啸天799</div>
           <div class="dot-divider hide-mobile"></div>
           <div class="beian-container">
             <a href="https://beian.miit.gov.cn/" target="_blank" class="beian">浙ICP备2024128766号-1</a>

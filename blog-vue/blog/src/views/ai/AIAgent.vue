@@ -4,7 +4,7 @@
       <v-card class="ai-agent-card">
         <v-card-title class="ai-title">
           <v-icon large color="primary" class="mr-2">mdi-robot</v-icon>
-          Auroral 智能助手
+          龙啸天799 智能助手
         </v-card-title>
         
         <v-card-subtitle class="ai-subtitle">
@@ -108,7 +108,7 @@ export default {
     }
   },
   mounted() {
-    this.addAgentMessage('您好！我是Auroral的智能助手，有什么我可以帮助您的吗？');
+    this.addAgentMessage('您好！我是龙啸天799的智能助手，有什么我可以帮助您的吗？');
   },
   methods: {
     sendMessage() {
@@ -157,7 +157,7 @@ export default {
       } else if (query.includes('忘记密码')) {
         response = '如果忘记密码，可以：\n\n1. 点击登录页面的"忘记密码"\n2. 输入您的注册邮箱或者手机号\n3. 获取验证码\n4. 设置新密码';
       } else {
-        response = '感谢您的提问！我是Auroral的智能助手，目前仍在学习中。您可以询问关于网站功能、联系博主、账户管理等方面的问题，我会尽力提供帮助。';
+        response = '感谢您的提问！我是龙啸天799的智能助手，目前仍在学习中。您可以询问关于网站功能、联系博主、账户管理等方面的问题，我会尽力提供帮助。';
       }
       
       this.addAgentMessage(response);

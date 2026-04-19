@@ -21,7 +21,7 @@
               />
             </v-avatar>
             <div class="name-title">
-              <h2>Auroral</h2>
+              <h2>龙啸天799</h2>
               <p>前端开发工程师</p>
             </div>
           </div>

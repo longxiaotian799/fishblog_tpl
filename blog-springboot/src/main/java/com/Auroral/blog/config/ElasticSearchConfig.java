@@ -1,6 +1,7 @@
 package com.Auroral.blog.config;
 
 import org.elasticsearch.client.RestHighLevelClient;
+import org.springframework.util.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,12 +32,21 @@ public class ElasticSearchConfig {
 
     @Bean
     public RestHighLevelClient client() {
-        ClientConfiguration clientConfiguration = ClientConfiguration.builder()
-                .connectedTo(host + ":" + port)
-                .withBasicAuth(username, password)  // 添加认证信息
-                .withConnectTimeout(Duration.ofSeconds(5))
-                .withSocketTimeout(Duration.ofSeconds(3))
-                .build();
+        ClientConfiguration clientConfiguration;
+        if (StringUtils.hasText(username)) {
+            clientConfiguration = ClientConfiguration.builder()
+                    .connectedTo(host + ":" + port)
+                    .withBasicAuth(username, password)
+                    .withConnectTimeout(Duration.ofSeconds(5))
+                    .withSocketTimeout(Duration.ofSeconds(3))
+                    .build();
+        } else {
+            clientConfiguration = ClientConfiguration.builder()
+                    .connectedTo(host + ":" + port)
+                    .withConnectTimeout(Duration.ofSeconds(5))
+                    .withSocketTimeout(Duration.ofSeconds(3))
+                    .build();
+        }
         return RestClients.create(clientConfiguration).rest();
     }
 

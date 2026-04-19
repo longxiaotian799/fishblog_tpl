@@ -22,7 +22,7 @@ const routes = [
     path: "/",
     component: () => import('../views/home/Home.vue'),
     meta: {
-      title: "Auroral的个人博客"
+      title: "龙啸天799的个人博客"
     }
   },
   {
@@ -103,7 +103,7 @@ const routes = [
     name: 'AIAssistant',
     component: () => import('../views/ai/AIAgent.vue'),
     meta: {
-      title: 'AI智能助手 - Auroral'
+      title: 'AI智能助手 - 龙啸天799'
     }
   },
   {
